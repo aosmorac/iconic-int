@@ -24,7 +24,7 @@ cd iconic-int
 ```
 docker-compose up
 ```
-Now is necesary install package with composer
+Now is necessary install package with composer
 * Open a new terminal without close the other one.
 * Go into php container
 ```
@@ -58,6 +58,7 @@ Functionalities
 Just following the tests you can check the functionalities.
 * CustomersControllerFunctionalTest.php
 * CollectionTest.php
+
 The main class is: 
 * Collection.php
 
