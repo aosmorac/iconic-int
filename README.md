@@ -20,11 +20,12 @@ git clone https://github.com/aosmorac/iconic-int.git
 ```
 cd iconic-int
 ```
-* Run dontainers
+* Run containers
 ```
 docker-compose up
 ```
 Now is necesary install package with composer
+* Open a new terminal without close the other one.
 * Go into php container
 ```
 docker exec -i -t symfony-first bash
@@ -57,3 +58,7 @@ The main class is:
 * Collection.php
 
 It is necessary do some code refactoring. 
+
+First Step
+---
+You can load the first data in ```http://localhost:8080/customers/``` using ```post``` and sending a object like ```[{"name":"Jhon", "age":33}, {"name":"Steve", "age":33}]```
