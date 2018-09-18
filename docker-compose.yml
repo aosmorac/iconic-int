@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+    - "8080:80"
+    volumes:
+    - ./code:/code
+    - ./site.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+    - php
+  php:
+    build:
+      context: ./
+      dockerfile: symfony.docker
+    container_name: symfony-first
+    working_dir: /code
+    volumes:
+    - ./code:/code
+    - ./conf:/usr/local/etc/php/conf.d
+    depends_on:
+    - mongo
+    - redis
+  mongo:
+    image: mongo:4.1
+    volumes:
+    - ./conf/mongodb-scripts:/scripts
+    entrypoint: [ "bash", "/scripts/mongosetup.sh" ]
+    depends_on:
+    - db
+    restart: always
+  db:
+    image: mongo:4.1
+    command: ["mongod", "--replSet", "rs"]
+    ports:
+    - "27017:27017"
+    volumes:
+    - ./data/mongodb:/data/db
+    restart: always
+  redis:
+    image: redis:3
+    ports:
+    - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    volumes:
+    - ./data/redis:/data

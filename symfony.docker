@@ -1,0 +1,15 @@
+# From PHP 7.2 FPM based on Alpine Linux
+FROM php:7.2-fpm-alpine
+
+# Maintainer
+MAINTAINER Abel Moreno <abel.moreno.acevedo@gmail.com>
+
+# Install dependencies
+RUN apk update && apk add autoconf openssl-dev g++ make zip libzip-dev && \
+apk add bash composer
+
+#Install PHP extensions
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip
+
+
+RUN pecl install mongodb
