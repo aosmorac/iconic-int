@@ -38,6 +38,10 @@ cd /code/interview
 ```
 composer install
 ```
+* Just for the test we are going to asign 777 permissions for avoid cache folder problems.
+```
+chmod 777 -R ./
+```
 Now you can open http://localhost:8080/customers/ and check the test
 
 
